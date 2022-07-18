@@ -42,7 +42,7 @@ const userControll = {
         });
     },
     // edit user
-    updateUser(req, res) {
+    editUser(req, res) {
         User.findOneAndUpdate(
             { _id: req.params.userId },
             { $set: req.body, },
