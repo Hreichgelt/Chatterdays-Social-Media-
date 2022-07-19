@@ -75,8 +75,42 @@ const thoughtControll = {
 },
 
   // add reaction
+  addReaction(req, res) {
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $addToSet: { reactions: req.body } },
+      { runValidators: true, new: true }
+    )
+    .then((thoughtData) =>{
+      if (!thoughtData) {
+        return res.status(404).json({ message: 'Not Found' });
+      }
+      res.json(thoughtData)
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+  },
 
   // delete reaction
+  deleteReaction(req, res) {
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $pull: { reactions: { thoughtId: req.params.thoughtId } } },
+      { runValidators: true, new: true }
+    )
+    .then((thoughtData) => {
+      if (!thoughtData) {
+        return res.status(404).json({ message: 'Not found' });
+      }
+      res.json(thoughtData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+  },
 };
 
 module.exports = thoughtControll;

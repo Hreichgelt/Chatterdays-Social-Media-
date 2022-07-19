@@ -1,12 +1,12 @@
 const router = require('express').Router();
 
-const getUsers = require('../../controllers/userControll');
-const getOneUser = require('../../controllers/userControll');
-const createUser = require('../../controllers/userControll');
-const editUser = require('../../controllers/userControll');
-const deleteUser = require('../../controllers/userControll');
-const addFriend = require('../../controllers/userControll');
-const deleteFriend = require('../../controllers/userControll');
+const {getUsers} = require('../../controllers/userControll');
+const {getOneUser} = require('../../controllers/userControll');
+const {createUser} = require('../../controllers/userControll');
+const {editUser} = require('../../controllers/userControll');
+const {deleteUser} = require('../../controllers/userControll');
+const {addFriend} = require('../../controllers/userControll');
+const {deleteFriend} = require('../../controllers/userControll');
 
 
 router.route('/').get(getUsers).post(createUser);
